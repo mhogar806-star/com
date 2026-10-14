@@ -1,0 +1,1962 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi Hogar | Renta de Cuartos</title>
+
+    <style>
+
+        /* =====================================================
+           CONFIGURACIÓN GENERAL
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fa;
+            color: #172033;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+
+        /* =====================================================
+           BARRA SUPERIOR
+        ===================================================== */
+
+        header {
+            height: 58px;
+            background: #062347;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 4%;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            z-index: 1000;
+
+            box-shadow: 0 2px 10px rgba(0,0,0,0.18);
+        }
+
+
+        /* LOGO */
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .logo-casa {
+            font-size: 19px;
+            color: white;
+        }
+
+
+        /* MENÚ */
+
+        nav ul {
+            display: flex;
+            align-items: center;
+
+            list-style: none;
+
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #73a9ff;
+        }
+
+
+        /* =====================================================
+           PORTADA PRINCIPAL
+        ===================================================== */
+
+        .hero {
+
+            height: 620px;
+
+            margin-top: 58px;
+
+            position: relative;
+
+            background-image:
+
+                linear-gradient(
+                    90deg,
+                    rgba(3, 28, 58, 0.92) 0%,
+                    rgba(3, 28, 58, 0.80) 27%,
+                    rgba(3, 28, 58, 0.35) 52%,
+                    rgba(3, 28, 58, 0.05) 75%
+                ),
+
+                url("https://www.neinorhomes.com/uploads/promociones/documentos/9928/img/0000000003583243.JPG");
+
+            background-size: cover;
+
+            background-position: center;
+        }
+
+
+        /* CONTENIDO DE PORTADA */
+
+        .hero-content {
+
+            position: absolute;
+
+            left: 7%;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            max-width: 430px;
+
+            color: white;
+        }
+
+
+        .hero-content h1 {
+
+            font-size: 48px;
+
+            line-height: 0.98;
+
+            margin-bottom: 15px;
+
+            font-weight: 800;
+
+            letter-spacing: -1px;
+        }
+
+
+        .hero-content p {
+
+            font-size: 17px;
+
+            line-height: 1.3;
+
+            margin-bottom: 25px;
+
+            max-width: 320px;
+        }
+
+
+        /* BOTÓN PRINCIPAL */
+
+        .btn-principal {
+
+            display: inline-block;
+
+            background: #1769d1;
+
+            color: white;
+
+            padding: 12px 18px;
+
+            border-radius: 4px;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+        .btn-principal:hover {
+
+            background: #0d54b0;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           SECCIONES
+        ===================================================== */
+
+        .seccion {
+
+            padding: 75px 7%;
+        }
+
+
+        .titulo {
+
+            text-align: center;
+
+            font-size: 32px;
+
+            color: #142238;
+
+            margin-bottom: 10px;
+        }
+
+
+        .subtitulo {
+
+            text-align: center;
+
+            color: #697386;
+
+            margin-bottom: 40px;
+
+            font-size: 15px;
+        }
+
+
+        /* =====================================================
+           CUARTOS
+        ===================================================== */
+
+        .cuartos {
+
+            background: #f5f7fa;
+        }
+
+
+        .cuartos-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        /* TARJETA */
+
+        .cuarto {
+
+            background: white;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(20,40,70,0.10);
+
+            transition: 0.3s;
+        }
+
+
+        .cuarto:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(20,40,70,0.15);
+        }
+
+
+        /* =====================================================
+           GALERÍA
+        ===================================================== */
+
+        .galeria {
+
+            height: 240px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: #ddd;
+        }
+
+
+        .galeria img {
+
+            width: 100%;
+
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: opacity 0.25s;
+        }
+
+
+        /* FLECHAS */
+
+        .flecha {
+
+            position: absolute;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            width: 40px;
+
+            height: 40px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: rgba(0,0,0,0.55);
+
+            color: white;
+
+            font-size: 29px;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            cursor: pointer;
+
+            z-index: 5;
+
+            transition: 0.2s;
+        }
+
+
+        .flecha:hover {
+
+            background: rgba(0,0,0,0.85);
+
+            transform:
+                translateY(-50%)
+                scale(1.08);
+        }
+
+
+        .flecha-izquierda {
+
+            left: 12px;
+        }
+
+
+        .flecha-derecha {
+
+            right: 12px;
+        }
+
+
+        /* PUNTOS */
+
+        .indicadores {
+
+            position: absolute;
+
+            bottom: 10px;
+
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            gap: 6px;
+
+            z-index: 5;
+        }
+
+
+        .punto {
+
+            width: 7px;
+
+            height: 7px;
+
+            background: rgba(255,255,255,0.55);
+
+            border-radius: 50%;
+        }
+
+
+        .punto.activo {
+
+            background: white;
+
+            transform: scale(1.25);
+        }
+
+
+        /* =====================================================
+           INFORMACIÓN DEL CUARTO
+        ===================================================== */
+
+        .cuarto-info {
+
+            padding: 22px;
+        }
+
+
+        .cuarto-info h3 {
+
+            font-size: 21px;
+
+            margin-bottom: 8px;
+
+            color: #172033;
+        }
+
+
+        .descripcion {
+
+            color: #687386;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            margin-bottom: 12px;
+        }
+
+
+        .precio {
+
+            color: #1769d1;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 6px;
+        }
+
+
+        .disponible {
+
+            color: #18a558;
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            margin-bottom: 17px;
+        }
+
+
+        .btn-info {
+
+            display: inline-block;
+
+            background: #1769d1;
+
+            color: white;
+
+            border: none;
+
+            padding: 11px 17px;
+
+            border-radius: 5px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+
+        .btn-info:hover {
+
+            background: #0d54b0;
+        }
+
+
+        /* =====================================================
+           SERVICIOS
+        ===================================================== */
+
+        .servicios {
+
+            background: white;
+        }
+
+
+        .servicios-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .servicio {
+
+            text-align: center;
+
+            background: #f6f8fb;
+
+            border-radius: 10px;
+
+            padding: 30px 20px;
+
+            border: 1px solid #e9edf3;
+        }
+
+
+        .servicio-icono {
+
+            font-size: 34px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .servicio h3 {
+
+            margin-bottom: 8px;
+
+            font-size: 17px;
+        }
+
+
+        .servicio p {
+
+            color: #687386;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           UBICACIÓN
+        ===================================================== */
+
+        .ubicacion {
+
+            background: #f5f7fa;
+
+            text-align: center;
+        }
+
+
+        .mapa {
+
+            width: 100%;
+
+            height: 420px;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(20,40,70,0.12);
+
+            margin-bottom: 22px;
+        }
+
+
+        .mapa iframe {
+
+            width: 100%;
+
+            height: 100%;
+
+            border: 0;
+        }
+
+
+        .btn-mapa {
+
+            display: inline-block;
+
+            background: #1769d1;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+        }
+
+
+        /* =====================================================
+           CONTACTO
+        ===================================================== */
+
+        .contacto {
+
+            background: #062347;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 70px 7%;
+        }
+
+
+        .contacto h2 {
+
+            font-size: 32px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .contacto p {
+
+            color: #d8e2f0;
+
+            margin-bottom: 25px;
+
+            font-size: 15px;
+        }
+
+
+        .whatsapp {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background: #25d366;
+
+            color: white;
+
+            padding: 13px 22px;
+
+            border-radius: 6px;
+
+            font-weight: bold;
+
+            font-size: 14px;
+
+            transition: 0.2s;
+        }
+
+
+        .whatsapp:hover {
+
+            background: #1da851;
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           PIE DE PÁGINA
+        ===================================================== */
+
+        footer {
+
+            background: #03172e;
+
+            color: #9eacc0;
+
+            text-align: center;
+
+            padding: 22px;
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            z-index: 3000;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.75);
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 20px;
+        }
+
+
+        .modal-contenido {
+
+            background: white;
+
+            width: 100%;
+
+            max-width: 450px;
+
+            border-radius: 12px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            position: relative;
+        }
+
+
+        .cerrar {
+
+            position: absolute;
+
+            right: 18px;
+
+            top: 12px;
+
+            font-size: 28px;
+
+            color: #555;
+
+            cursor: pointer;
+        }
+
+
+        .modal-contenido h2 {
+
+            margin: 15px 0 8px;
+
+            color: #142238;
+        }
+
+
+        .modal-precio {
+
+            color: #1769d1;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .modal-contenido p {
+
+            color: #687386;
+
+            line-height: 1.5;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media (max-width: 900px) {
+
+            .cuartos-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .servicios-grid {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 43px;
+            }
+
+        }
+
+
+        /* =====================================================
+           CELULAR
+        ===================================================== */
+
+        @media (max-width: 600px) {
+
+            header {
+
+                height: 55px;
+
+                padding: 0 15px;
+            }
+
+
+            nav ul {
+
+                gap: 10px;
+            }
+
+
+            nav a {
+
+                font-size: 10px;
+            }
+
+
+            .logo {
+
+                font-size: 13px;
+            }
+
+
+            .logo-casa {
+
+                font-size: 16px;
+            }
+
+
+            .hero {
+
+                height: 560px;
+
+                margin-top: 55px;
+
+                background-position:
+                    63% center;
+            }
+
+
+            .hero-content {
+
+                left: 25px;
+
+                right: 25px;
+
+                top: 52%;
+            }
+
+
+            .hero-content h1 {
+
+                font-size: 38px;
+
+                max-width: 300px;
+            }
+
+
+            .hero-content p {
+
+                font-size: 16px;
+
+                max-width: 280px;
+            }
+
+
+            .seccion {
+
+                padding: 55px 20px;
+            }
+
+
+            .titulo {
+
+                font-size: 28px;
+            }
+
+
+            .cuartos-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .servicios-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .galeria {
+
+                height: 230px;
+            }
+
+
+            .mapa {
+
+                height: 330px;
+            }
+
+
+            .contacto h2 {
+
+                font-size: 27px;
+            }
+
+        }
+
+    
+/* ASISTENTE VIRTUAL */
+#mh-ai-launcher{position:fixed;right:22px;bottom:22px;z-index:5000;border:0;border-radius:999px;background:#1769d1;color:#fff;padding:15px 19px;font-weight:700;box-shadow:0 8px 28px #061d3b55;cursor:pointer;font-size:15px}
+#mh-ai-panel{position:fixed;right:22px;bottom:86px;z-index:5001;width:min(370px,calc(100vw - 28px));height:min(540px,calc(100vh - 120px));background:#fff;border-radius:16px;box-shadow:0 12px 45px #071b35aa;display:none;overflow:hidden;border:1px solid #dbe4f0;font-family:Arial,sans-serif}
+#mh-ai-panel.abierto{display:flex;flex-direction:column}
+.mh-ai-head{background:#062347;color:white;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mh-ai-head strong{font-size:16px}.mh-ai-head small{display:block;color:#d6e5fa;margin-top:4px;font-size:12px}
+#mh-ai-close{background:transparent;border:0;color:#fff;font-size:25px;cursor:pointer}
+#mh-ai-messages{padding:14px;overflow:auto;flex:1;background:#f5f7fb;display:flex;flex-direction:column;gap:10px}
+.mh-ai-msg{max-width:88%;padding:11px 13px;border-radius:13px;font-size:14px;line-height:1.45;white-space:pre-wrap;overflow-wrap:anywhere}
+.mh-ai-msg.bot{background:#fff;color:#172033;border:1px solid #e1e8f0;align-self:flex-start;border-bottom-left-radius:4px}
+.mh-ai-msg.user{background:#1769d1;color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.mh-ai-quick{display:flex;gap:7px;flex-wrap:wrap;padding:10px 12px;background:#fff;border-top:1px solid #e5eaf1}
+.mh-ai-quick button{border:1px solid #cbd8e8;background:#f8fbff;border-radius:18px;padding:7px 10px;color:#164b8e;cursor:pointer;font-size:12px}
+.mh-ai-form{display:flex;gap:8px;padding:12px;background:#fff;border-top:1px solid #e5eaf1}
+#mh-ai-input{min-width:0;flex:1;border:1px solid #cbd5e1;border-radius:22px;padding:11px 13px;font-size:14px;outline-color:#1769d1}
+#mh-ai-send{border:0;border-radius:50%;width:42px;height:42px;background:#1769d1;color:#fff;font-size:18px;cursor:pointer}
+.mh-ai-note{font-size:10px;color:#64748b;text-align:center;padding:0 12px 8px;background:#fff}
+@media(max-width:480px){#mh-ai-launcher{right:14px;bottom:14px;padding:13px 16px}#mh-ai-panel{right:8px;bottom:72px;width:calc(100vw - 16px);height:min(590px,calc(100vh - 95px))}}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         BARRA SUPERIOR
+    ====================================================== -->
+
+    <header>
+
+        <a href="#inicio" class="logo">
+
+            <span class="logo-casa">⌂</span>
+
+            <span>Mi Hogar</span>
+
+        </a>
+
+
+        <nav>
+
+            <ul>
+
+                <li>
+                    <a href="#inicio">
+                        Inicio
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#cuartos">
+                        Cuartos
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#servicios">
+                        Servicios
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#ubicacion">
+                        Ubicación
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#contacto">
+                        Contacto
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- =====================================================
+         PORTADA
+    ====================================================== -->
+
+    <section
+        id="inicio"
+        class="hero">
+
+
+        <div class="hero-content">
+
+            <h1>
+                Encuentra tu
+                <br>
+                nuevo hogar
+            </h1>
+
+
+            <p>
+                Cuartos cómodos, seguros y con
+                excelente ubicación.
+            </p>
+
+
+            <a
+                href="#cuartos"
+                class="btn-principal">
+
+                Ver cuartos disponibles
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CUARTOS
+    ====================================================== -->
+
+    <section
+        id="cuartos"
+        class="seccion cuartos">
+
+
+        <h2 class="titulo">
+            Cuartos disponibles
+        </h2>
+
+
+        <p class="subtitulo">
+            Encuentra el espacio ideal para ti.
+        </p>
+
+
+        <div class="cuartos-grid">
+
+
+            <!-- =================================================
+                 CUARTO 1
+            ================================================== -->
+
+            <article class="cuarto">
+
+
+                <div class="galeria">
+
+                    <img
+                        id="foto1"
+                        src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=900&q=90"
+                        alt="Cuarto individual">
+
+
+                    <button
+                        class="flecha flecha-izquierda"
+                        onclick="fotoAnterior(1)">
+
+                        ‹
+
+                    </button>
+
+
+                    <button
+                        class="flecha flecha-derecha"
+                        onclick="fotoSiguiente(1)">
+
+                        ›
+
+                    </button>
+
+
+                    <div
+                        class="indicadores"
+                        id="indicadores1">
+                    </div>
+
+                </div>
+
+
+                <div class="cuarto-info">
+
+                    <h3>
+                        Cuarto Individual
+                    </h3>
+
+
+                    <p class="descripcion">
+                        Espacio cómodo y amueblado,
+                        ideal para una persona.
+                    </p>
+
+
+                    <p class="precio">
+                        $2,500 / mes
+                    </p>
+
+
+                    <p class="disponible">
+                        ● Disponible
+                    </p>
+
+
+                    <button
+                        class="btn-info"
+                        onclick="mostrarCuarto(
+                            'Cuarto Individual',
+                            '$2,500 / mes'
+                        )">
+
+                        Ver información
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CUARTO 2
+            ================================================== -->
+
+            <article class="cuarto">
+
+
+                <div class="galeria">
+
+                    <img
+                        id="foto2"
+                        src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=90"
+                        alt="Cuarto doble">
+
+
+                    <button
+                        class="flecha flecha-izquierda"
+                        onclick="fotoAnterior(2)">
+
+                        ‹
+
+                    </button>
+
+
+                    <button
+                        class="flecha flecha-derecha"
+                        onclick="fotoSiguiente(2)">
+
+                        ›
+
+                    </button>
+
+
+                    <div
+                        class="indicadores"
+                        id="indicadores2">
+                    </div>
+
+                </div>
+
+
+                <div class="cuarto-info">
+
+                    <h3>
+                        Cuarto Doble
+                    </h3>
+
+
+                    <p class="descripcion">
+                        Amplio espacio ideal para
+                        compartir.
+                    </p>
+
+
+                    <p class="precio">
+                        $3,500 / mes
+                    </p>
+
+
+                    <p class="disponible">
+                        ● Disponible
+                    </p>
+
+
+                    <button
+                        class="btn-info"
+                        onclick="mostrarCuarto(
+                            'Cuarto Doble',
+                            '$3,500 / mes'
+                        )">
+
+                        Ver información
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- =================================================
+                 CUARTO 3
+            ================================================== -->
+
+            <article class="cuarto">
+
+
+                <div class="galeria">
+
+                    <img
+                        id="foto3"
+                        src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=90"
+                        alt="Cuarto premium">
+
+
+                    <button
+                        class="flecha flecha-izquierda"
+                        onclick="fotoAnterior(3)">
+
+                        ‹
+
+                    </button>
+
+
+                    <button
+                        class="flecha flecha-derecha"
+                        onclick="fotoSiguiente(3)">
+
+                        ›
+
+                    </button>
+
+
+                    <div
+                        class="indicadores"
+                        id="indicadores3">
+                    </div>
+
+                </div>
+
+
+                <div class="cuarto-info">
+
+                    <h3>
+                        Cuarto Premium
+                    </h3>
+
+
+                    <p class="descripcion">
+                        Cuarto amplio con baño
+                        privado.
+                    </p>
+
+
+                    <p class="precio">
+                        $4,500 / mes
+                    </p>
+
+
+                    <p class="disponible">
+                        ● Disponible
+                    </p>
+
+
+                    <button
+                        class="btn-info"
+                        onclick="mostrarCuarto(
+                            'Cuarto Premium',
+                            '$4,500 / mes'
+                        )">
+
+                        Ver información
+
+                    </button>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         SERVICIOS
+    ====================================================== -->
+
+    <section
+        id="servicios"
+        class="seccion servicios">
+
+
+        <h2 class="titulo">
+            Servicios incluidos
+        </h2>
+
+
+        <p class="subtitulo">
+            Todo lo necesario para vivir cómodamente.
+        </p>
+
+
+        <div class="servicios-grid">
+
+
+            <div class="servicio">
+
+                <div class="servicio-icono">
+                    ⚡
+                </div>
+
+                <h3>
+                    Luz
+                </h3>
+
+                <p>
+                    Servicio de luz incluido.
+                </p>
+
+            </div>
+
+
+            <div class="servicio">
+
+                <div class="servicio-icono">
+                    💧
+                </div>
+
+                <h3>
+                    Agua
+                </h3>
+
+                <p>
+                    Servicio de agua incluido.
+                </p>
+
+            </div>
+
+
+            <div class="servicio">
+
+                <div class="servicio-icono">
+                    🔒
+                </div>
+
+                <h3>
+                    Seguridad
+                </h3>
+
+                <p>
+                    Ambiente tranquilo y seguro.
+                </p>
+
+            </div>
+
+
+            <div class="servicio">
+
+                <div class="servicio-icono">
+                    🧹
+                </div>
+
+                <h3>
+                    Limpieza
+                </h3>
+
+                <p>
+                    Áreas comunes cuidadas.
+                </p>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         UBICACIÓN
+    ====================================================== -->
+
+    <section
+        id="ubicacion"
+        class="seccion ubicacion">
+
+
+        <h2 class="titulo">
+            Nuestra ubicación
+        </h2>
+
+
+        <p class="subtitulo">
+            Encuéntranos fácilmente.
+        </p>
+
+
+        <div class="mapa">
+
+            <iframe
+
+                src="https://www.google.com/maps?q=20.1951677,-96.8784172&z=17&output=embed"
+
+                loading="lazy"
+
+                allowfullscreen>
+
+            </iframe>
+
+        </div>
+
+
+        <a
+            href="https://maps.app.goo.gl/VFpG3QXHdyYboU6p9"
+            target="_blank"
+            class="btn-mapa">
+
+            📍 Abrir en Google Maps
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         CONTACTO
+    ====================================================== -->
+
+    <section
+        id="contacto"
+        class="contacto">
+
+
+        <h2>
+            ¿Te interesa rentar un cuarto?
+        </h2>
+
+
+        <p>
+            Escríbenos por WhatsApp para consultar
+            disponibilidad, precios y requisitos.
+        </p>
+
+
+        <a
+            href="https://wa.me/522322588886?text=Hola,%20me%20interesa%20rentar%20un%20cuarto"
+            target="_blank"
+            class="whatsapp">
+
+            💬
+
+            Contactar por WhatsApp
+
+        </a>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+    ====================================================== -->
+
+    <footer>
+
+        © 2026 Mi Hogar - Renta de Cuartos
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         MODAL
+    ====================================================== -->
+
+    <div
+        id="modal"
+        class="modal">
+
+
+        <div class="modal-contenido">
+
+
+            <span
+                class="cerrar"
+                onclick="cerrarModal()">
+
+                ×
+
+            </span>
+
+
+            <h2
+                id="nombreCuarto">
+
+                Cuarto
+
+            </h2>
+
+
+            <div
+                id="precioCuarto"
+                class="modal-precio">
+
+                Precio
+
+            </div>
+
+
+            <p>
+
+                Para conocer disponibilidad,
+                requisitos, servicios y más
+                información sobre este cuarto,
+                comunícate con nosotros.
+
+            </p>
+
+
+            <a
+                href="https://wa.me/522322588886?text=Hola,%20me%20interesa%20rentar%20un%20cuarto"
+                target="_blank"
+                class="whatsapp">
+
+                💬 WhatsApp
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+
+        /* =====================================================
+           FOTOS DE LOS CUARTOS
+        ===================================================== */
+
+        const galerias = {
+
+
+            1: [
+
+                "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=90"
+
+            ],
+
+
+            2: [
+
+                "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=90"
+
+            ],
+
+
+            3: [
+
+                "https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=90",
+
+                "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=90"
+
+            ]
+
+        };
+
+
+        /* =====================================================
+           POSICIONES
+        ===================================================== */
+
+        const posiciones = {
+
+            1: 0,
+            2: 0,
+            3: 0
+
+        };
+
+
+        /* =====================================================
+           MOSTRAR FOTO
+        ===================================================== */
+
+        function mostrarFoto(cuarto) {
+
+            const imagen =
+                document.getElementById(
+                    "foto" + cuarto
+                );
+
+
+            imagen.src =
+                galerias[cuarto][
+                    posiciones[cuarto]
+                ];
+
+
+            actualizarIndicadores(cuarto);
+
+        }
+
+
+        /* =====================================================
+           FOTO ANTERIOR
+        ===================================================== */
+
+        function fotoAnterior(cuarto) {
+
+            posiciones[cuarto]--;
+
+
+            if (posiciones[cuarto] < 0) {
+
+                posiciones[cuarto] =
+                    galerias[cuarto].length - 1;
+
+            }
+
+
+            mostrarFoto(cuarto);
+
+        }
+
+
+        /* =====================================================
+           FOTO SIGUIENTE
+        ===================================================== */
+
+        function fotoSiguiente(cuarto) {
+
+            posiciones[cuarto]++;
+
+
+            if (
+                posiciones[cuarto] >=
+                galerias[cuarto].length
+            ) {
+
+                posiciones[cuarto] = 0;
+
+            }
+
+
+            mostrarFoto(cuarto);
+
+        }
+
+
+        /* =====================================================
+           CREAR PUNTOS
+        ===================================================== */
+
+        function crearIndicadores(cuarto) {
+
+            const contenedor =
+                document.getElementById(
+                    "indicadores" + cuarto
+                );
+
+
+            contenedor.innerHTML = "";
+
+
+            galerias[cuarto].forEach(
+                function(foto, indice) {
+
+
+                    const punto =
+                        document.createElement(
+                            "span"
+                        );
+
+
+                    punto.className = "punto";
+
+
+                    if (indice === 0) {
+
+                        punto.classList.add(
+                            "activo"
+                        );
+
+                    }
+
+
+                    contenedor.appendChild(
+                        punto
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           ACTUALIZAR PUNTOS
+        ===================================================== */
+
+        function actualizarIndicadores(cuarto) {
+
+            const puntos =
+                document.querySelectorAll(
+                    "#indicadores" +
+                    cuarto +
+                    " .punto"
+                );
+
+
+            puntos.forEach(
+                function(punto, indice) {
+
+
+                    punto.classList.remove(
+                        "activo"
+                    );
+
+
+                    if (
+                        indice ===
+                        posiciones[cuarto]
+                    ) {
+
+                        punto.classList.add(
+                            "activo"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        /* =====================================================
+           INICIAR GALERÍAS
+        ===================================================== */
+
+        crearIndicadores(1);
+
+        crearIndicadores(2);
+
+        crearIndicadores(3);
+
+
+
+        /* =====================================================
+           ABRIR INFORMACIÓN DEL CUARTO
+        ===================================================== */
+
+        function mostrarCuarto(
+            nombre,
+            precio
+        ) {
+
+
+            document.getElementById(
+                "nombreCuarto"
+            ).innerText = nombre;
+
+
+            document.getElementById(
+                "precioCuarto"
+            ).innerText = precio;
+
+
+            document.getElementById(
+                "modal"
+            ).style.display = "flex";
+
+        }
+
+
+        /* =====================================================
+           CERRAR MODAL
+        ===================================================== */
+
+        function cerrarModal() {
+
+            document.getElementById(
+                "modal"
+            ).style.display = "none";
+
+        }
+
+
+        /* =====================================================
+           CERRAR AL HACER CLIC FUERA
+        ===================================================== */
+
+        window.onclick =
+            function(event) {
+
+
+                const modal =
+                    document.getElementById(
+                        "modal"
+                    );
+
+
+                if (
+                    event.target === modal
+                ) {
+
+                    modal.style.display =
+                        "none";
+
+                }
+
+            };
+
+
+    </script>
+
+
+
+<script id="admin-config">
+/* ADMIN_CONFIG_START */
+{"siteName":"Mi Hogar","heroTitle":"Encuentra tu nuevo hogar","heroDescription":"Cuartos cómodos, seguros y con excelente ubicación.","whatsapp":"2322588886","mapLink":"https://maps.app.goo.gl/VFpG3QXHdyYboU6p9","rooms":[{"name":"Cuarto Individual","description":"Espacio cómodo y amueblado, ideal para una persona.","price":"$2,500 / mes","status":"Disponible","photos":["https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1617104678098-de229db51175?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=90"]},{"name":"Cuarto Doble","description":"Amplio espacio ideal para compartir.","price":"$3,500 / mes","status":"Disponible","photos":["https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=90"]},{"name":"Cuarto Premium","description":"Cuarto amplio con baño privado.","price":"$4,500 / mes","status":"Disponible","photos":["https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=900&q=90","https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=900&q=90"]}],"services":[{"icon":"💡","name":"Luz","description":"Servicio de luz incluido."},{"icon":"💧","name":"Agua","description":"Servicio de agua incluido."},{"icon":"🔒","name":"Seguridad","description":"Ambiente tranquilo y seguro."},{"icon":"🧹","name":"Limpieza","description":"Áreas comunes cuidadas."}]}
+/* ADMIN_CONFIG_END */
+(function(){
+  const cfg=JSON.parse(document.getElementById('admin-config').textContent.split('/* ADMIN_CONFIG_START */')[1].split('/* ADMIN_CONFIG_END */')[0].trim());
+  const safe=(v)=>String(v??'');
+  const heroTitle=document.querySelector('.hero-content h1');
+  if(heroTitle) heroTitle.innerHTML=safe(cfg.heroTitle).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/ nuevo /i,'<br>nuevo ');
+  const heroDesc=document.querySelector('.hero-content p'); if(heroDesc) heroDesc.textContent=cfg.heroDescription;
+  const logo=document.querySelector('.logo span:last-child'); if(logo) logo.textContent=cfg.siteName;
+  document.title=cfg.siteName+' | Renta de Cuartos';
+  const cards=[...document.querySelectorAll('.cuarto')];
+  cfg.rooms.forEach((r,i)=>{
+    const card=cards[i]; if(!card)return;
+    const h=card.querySelector('.cuarto-info h3'); if(h)h.textContent=r.name;
+    const d=card.querySelector('.descripcion'); if(d)d.textContent=r.description;
+    const p=card.querySelector('.precio'); if(p)p.textContent=r.price;
+    const st=card.querySelector('.disponible'); if(st){st.textContent='● '+r.status;st.style.color=/disponible/i.test(r.status)?'#18a558':'#d14343';}
+    if(Array.isArray(r.photos)&&r.photos.length){galerias[i+1]=r.photos;posiciones[i+1]=0;mostrarFoto(i+1);crearIndicadores(i+1);}
+    const btn=card.querySelector('.btn-info'); if(btn)btn.setAttribute('onclick',`mostrarCuarto(${JSON.stringify(r.name)},${JSON.stringify(r.price)})`);
+  });
+  document.querySelectorAll('.servicio').forEach((el,i)=>{const x=cfg.services[i];if(!x)return;const ic=el.querySelector('.servicio-icono'),h=el.querySelector('h3'),p=el.querySelector('p');if(ic)ic.textContent=x.icon;if(h)h.textContent=x.name;if(p)p.textContent=x.description;});
+  const mapBtn=document.querySelector('.btn-mapa'); if(mapBtn)mapBtn.href=cfg.mapLink;
+  const wa='https://wa.me/52'+safe(cfg.whatsapp).replace(/\D/g,'')+'?text='+encodeURIComponent('Hola, me interesa rentar un cuarto');
+  document.querySelectorAll('a[href*="wa.me/"]').forEach(a=>a.href=wa);
+  const footer=document.querySelector('footer'); if(footer)footer.textContent='© '+new Date().getFullYear()+' '+cfg.siteName+' - Renta de Cuartos';
+})();
+</script>
+
+
+<!-- Asistente virtual de Mi Hogar -->
+<button id="mh-ai-launcher" type="button" aria-label="Abrir asistente virtual">💬 ¿Necesitas ayuda?</button>
+<section id="mh-ai-panel" aria-label="Asistente virtual" aria-live="polite">
+  <div class="mh-ai-head"><div><strong>🏠 Asistente de Mi Hogar</strong><small>Te ayudo con dudas sobre los cuartos</small></div><button id="mh-ai-close" type="button" aria-label="Cerrar asistente">×</button></div>
+  <div id="mh-ai-messages"><div class="mh-ai-msg bot">¡Hola! 👋 Soy el asistente virtual de Mi Hogar. Puedo orientarte sobre precios, disponibilidad, servicios, ubicación o cómo reportar un problema. ¿Qué necesitas?</div></div>
+  <div class="mh-ai-quick"><button type="button" data-mh-quick="Precios de los cuartos">💵 Precios</button><button type="button" data-mh-quick="¿Qué servicios incluyen?">📶 Servicios</button><button type="button" data-mh-quick="¿Qué cuartos están disponibles?">🛏️ Disponibilidad</button><button type="button" data-mh-quick="Tengo un problema con mi departamento">🛠️ Reportar problema</button></div>
+  <form id="mh-ai-form" class="mh-ai-form"><input id="mh-ai-input" type="text" maxlength="500" placeholder="Escribe tu pregunta…" autocomplete="off" aria-label="Escribe tu pregunta" required><button id="mh-ai-send" type="submit" aria-label="Enviar">➤</button></form>
+  <div class="mh-ai-note">Asistente informativo. Para confirmar o resolver casos particulares, te conecta con administración.</div>
+</section>
+<script>
+(function(){
+ const panel=document.getElementById('mh-ai-panel'), launcher=document.getElementById('mh-ai-launcher'), close=document.getElementById('mh-ai-close'), messages=document.getElementById('mh-ai-messages'), form=document.getElementById('mh-ai-form'), input=document.getElementById('mh-ai-input');
+ const configEl=document.getElementById('admin-config'); let cfg={};
+ try{if(configEl)cfg=JSON.parse(configEl.textContent.split('/* ADMIN_CONFIG_START */')[1].split('/* ADMIN_CONFIG_END */')[0].trim());}catch(e){}
+ const waNumber='52'+String(cfg.whatsapp||'2322588886').replace(/\D/g,'');
+ function add(text,who){const d=document.createElement('div');d.className='mh-ai-msg '+who;d.textContent=text;messages.appendChild(d);messages.scrollTop=messages.scrollHeight;}
+ function contactLink(message){return 'https://wa.me/'+waNumber+'?text='+encodeURIComponent(message);}
+ function answer(raw){const q=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const rooms=Array.isArray(cfg.rooms)?cfg.rooms:[]; const services=Array.isArray(cfg.services)?cfg.services:[];
+  if(/precio|cuanto|cuesta|renta|mensual|costo/.test(q)) return 'Estos son los precios publicados:\n'+(rooms.length?rooms.map(r=>'• '+r.name+': '+r.price).join('\n'):'Consulta los precios con administración.')+'\n\nLos precios y la disponibilidad deben confirmarse con administración.';
+  if(/disponib|libre|ocupad|hay cuarto|hay departamento/.test(q)) return 'Disponibilidad publicada:\n'+(rooms.length?rooms.map(r=>'• '+r.name+': '+r.status).join('\n'):'No tengo la lista disponible en este momento.')+'\n\nPara confirmar si sigue libre, contacta a administración por WhatsApp.';
+  if(/servicio|wifi|internet|agua|limpieza|seguridad|incluye/.test(q)) return 'Servicios publicados:\n'+(services.length?services.map(x=>'• '+x.name+': '+x.description).join('\n'):'Pregunta a administración qué servicios están incluidos.')+'\n\nSi necesitas confirmar condiciones específicas, te ayudo a contactar a administración.';
+  if(/ubicacion|direccion|donde|mapa|llegar/.test(q)) return 'Puedes consultar la ubicación en Google Maps desde este enlace: '+(cfg.mapLink||'https://maps.app.goo.gl/VFpG3QXHdyYboU6p9');
+  if(/problema|falla|no funciona|averia|repar|fuga|gotera|luz|electri|ruido|queja|urgente|mantenimiento/.test(q)) return 'Lamento que tengas ese problema. Para que administración pueda atenderlo, envía por WhatsApp qué ocurrió, en qué cuarto/departamento estás y desde cuándo sucede. Si hay peligro inmediato (por ejemplo, olor a gas, chispas o riesgo eléctrico), aléjate de la zona y contacta a los servicios de emergencia correspondientes.\n\nPulsa “Contactar administración por WhatsApp” para enviar el reporte.';
+  if(/requisito|document|contrato|deposito|depósito|visita|reserv|apartar|mas informacion|más información/.test(q)) return 'Para conocer requisitos, depósito, contrato, visitas o apartar un cuarto, lo mejor es confirmarlo directamente con administración, ya que esta página no contiene esos detalles.';
+  return 'Puedo ayudarte con precios, disponibilidad publicada, servicios, ubicación o reportes de mantenimiento. Si tu caso es particular, contacta a administración para recibir una respuesta confirmada.';
+ }
+ function send(text){const value=String(text||'').trim();if(!value)return;add(value,'user');const response=answer(value);add(response,'bot');if(/problema|falla|no funciona|averia|repar|fuga|gotera|luz|electri|ruido|queja|urgente|mantenimiento|requisito|contrato|deposito|visita|reserv|apartar|particular/.test(value.toLowerCase())){const a=document.createElement('a');a.href=contactLink('Hola, necesito ayuda con Mi Hogar. Mi consulta es: '+value);a.target='_blank';a.rel='noopener noreferrer';a.textContent='Contactar administración por WhatsApp';a.style.cssText='display:block;text-align:center;background:#25d366;color:#fff;font-weight:bold;text-decoration:none;padding:11px;border-radius:8px;margin:0 12px 10px;font-size:13px';messages.appendChild(a);messages.scrollTop=messages.scrollHeight;}}
+ launcher.addEventListener('click',()=>{panel.classList.add('abierto');input.focus();});close.addEventListener('click',()=>panel.classList.remove('abierto'));
+ form.addEventListener('submit',e=>{e.preventDefault();send(input.value);input.value='';input.focus();});
+ panel.querySelectorAll('[data-mh-quick]').forEach(b=>b.addEventListener('click',()=>send(b.getAttribute('data-mh-quick'))));
+})();
+</script>
+
+</body>
+
+</html>
